@@ -1,0 +1,73 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Petstore",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://petstore.swagger.io/v2"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Pet": {
+        "properties": {
+          "category": {
+            "example": "dog",
+            "type": "string"
+          },
+          "id": {
+            "example": 10,
+            "format": "int64",
+            "type": "integer"
+          },
+          "name": {
+            "example": "doggie",
+            "type": "string"
+          },
+          "status": {
+            "description": "pet status in the store",
+            "enum": [
+              "available",
+              "pending",
+              "sold"
+            ],
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "type": "object"
+      }
+    }
+  },
+  "paths": {
+    "/pet": {
+      "post": {
+        "operationId": "addPet",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Pet"
+              }
+            }
+          },
+          "description": "Update an existent pet in the store",
+          "required": true
+        },
+        "responses": {
+          "405": {
+            "description": "Invalid input"
+          }
+        },
+        "summary": "Add a new pet to the store",
+        "tags": [
+          "pet"
+        ]
+      }
+    }
+  }
+}

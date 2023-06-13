@@ -1,0 +1,23 @@
+### Globals
+@secret = 352d20ee67be67f6340b4c0605b044b7
+@dashboard_credentials = 94133fb989c6442079e629eb276e28ca
+
+### Using an existing OAS spec with Tyk (import)
+POST http://localhost:3000/api/apis/oas/import
+?listenPath=/validated_api/&validateRequest=true
+authorization:{{dashboard_credentials}}
+Content-Type: application/json
+
+< ./schema_validation_api.json
+
+### Reload GW to load API
+GET http://localhost:8081/tyk/reload/
+x-tyk-authorization:{{secret}}
+
+
+### Get API details
+GET http://localhost:3000/api/apis/oas/e35330e5c48e45435ce7d3a0fa2fcbc5
+authorization:{{dashboard_credentials}}
+Content-Type: application/json
+
+5f9f45b94ec641f35a0e50c3ae4c6acb

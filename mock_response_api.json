@@ -1,0 +1,56 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Mock Response",
+      "description": "https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.3.md#mediaTypeObject",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "https://httpbin.org/"
+      }
+    ],
+    "paths": {
+      "/example": {
+        "get": {
+          "description": "Showcase of responses with an `example` property present.",
+          "responses": {
+            "200": {
+              "description": "OK",
+              "headers": {
+                "TestHeader": {
+                  "description": "A test example header",
+                  "schema": {
+                    "type": "string"
+                  }
+                }
+              },
+              "content": {
+                "application/json": {
+                  "example": {
+                    "id": 12345,
+                    "email": "test@example.com",
+                    "name": "Test user name"
+                  }
+                }
+              }
+            },
+            "204": {
+              "description": "OK",
+              "content": {
+                "application/json": {
+                  "example": [
+                    {
+                      "id": 12345,
+                      "email": "test@example.com",
+                      "name": "Test user name"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
