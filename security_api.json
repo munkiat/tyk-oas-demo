@@ -1,0 +1,43 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "securityauth",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://httpbin.org"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "authToken": {
+          "type": "apiKey",
+          "name": "Authorization",
+          "in": "header"
+        }
+      }
+    },
+    "security": [
+      {
+        "authToken": []
+      }
+    ],
+    "paths": {
+      "/get": {
+        "get": {
+          "summary": "Example endpoint",
+          "security": [
+            {
+              "authToken": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response"
+            }
+          }
+        }
+      }
+    }
+  }

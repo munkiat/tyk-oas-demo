@@ -1,0 +1,22 @@
+### Globals
+@secret = 352d20ee67be67f6340b4c0605b044b7
+@dashboard_credentials = 94133fb989c6442079e629eb276e28ca
+
+### Using an existing OAS spec with Tyk (import)
+POST http://localhost:3000/api/apis/oas/import
+?listenPath=/simple_api/
+authorization:{{dashboard_credentials}}
+Content-Type: application/json
+
+< ./simple_api.json
+
+### Reload GW to load API
+GET http://localhost:8081/tyk/reload/
+x-tyk-authorization:{{secret}}
+
+### Test ###
+POST http://localhost:8081/simple_api/post
+
+"Now that was easy, wasn't it?"
+
+### /Test ###
